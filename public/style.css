@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap');
 
 h1{
-	color: #6fbb9a;
+	color: #cab644;
 	text-align: center ;
 	font-size: 250%;
+      /* WebKit 真正的文字描邊 */
+    -webkit-text-stroke: 2px #222;
 }
 h2{
 	color: #6fbb9a;
@@ -19,22 +21,28 @@ a:hover {color:#FF00FF;}
 a:active {color:#0000FF;}
 
 a:link {color:#FF0000; background-color:#00FF00;}
+
+
 body{
-	background-position: center;
-	background-color: #fcfbf1;
-	background-image: none;
-	background-size: 600px;
-	background-repeat: no-repeat;
-	background-attachment: fixed; 
+	background-image: url('背景.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 #wrap{
-    padding:15px 10px 10px 10px;
-	background-color: #fdfdd4;
-	max-width: 1000px;
-	margin: 20px auto;
+   padding:15px 10px 10px 10px;
+    /* 改成半透明（保留背景可見） */
+    background-color: rgba(255, 255, 255, 0.5);
+    /* 補強：在支援的瀏覽器上模糊背景 */
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    max-width: 1000px;
+    margin: 20px auto;
+    color: #111;
 }
-div{background-color: #c5e9d9;}
+div{background-color: rgba(197,233,217,0.30);}
 p{ font-family: "Noto Serif TC", serif;}
 #top
 {
@@ -51,7 +59,8 @@ h3{
  } 
 
 nav {
-    background: linear-gradient(135deg, #6fbb9a 0%, #94c8b1 100%);
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #6fbb9a !important;
     padding: 15px 20px;
     margin-bottom: 20px;
     border-radius: 8px;
