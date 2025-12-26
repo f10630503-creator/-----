@@ -10,21 +10,60 @@
     <nav>
         <a href="index.html">首頁</a>
         <a href="guestbook.html">留言板</a>
-        <a href="snake.html">蛇</a>
+        <div class="game-dropdown-wrapper">
+            <button id="miniGameBtn" class="game-btn" aria-expanded="false" aria-controls="gameDropdown">小遊戲 ▾</button>
+            <div id="gameDropdown" class="game-dropdown" role="menu" aria-hidden="true">
+                <a href="snake.html" role="menuitem">貪吃蛇</a>
+                <a href="test.html" role="menuitem">猜數字</a>
+            </div>
+        </div>
     </nav>
+
     <div id="wrap">
-    <h1>歡迎來到首頁</h1>
+        <h1>歡迎來到首頁</h1>
         <p>這是我最喜歡的角色。</p>
-    <hr width="100%">
-    <h2>🔥🔥🔥空閑遊真🔥🔥🔥</h2>
+        <hr width="100%">
+
+        <h2><a href="https://zh.moegirl.tw/%E7%A9%BA%E9%97%B2%E6%B8%B8%E7%9C%9F">🔥🔥🔥空閑遊真🔥🔥🔥</a></h2>
+
         <p>他差不多動這麼快↓</p>
         <div>
-        <marquee scrollamount="2200"><img src="a94bb0b237735bd2ab79107bcc0f6fc1.jpg" width=300 alt="空閒遊真"></marquee>
+            <marquee scrollamount="2200"><img src="a94bb0b237735bd2ab79107bcc0f6fc1.jpg" width="300" alt="空閒遊真"></marquee>
         </div>
-        <a href="https://zh.moegirl.tw/%E7%A9%BA%E9%97%B2%E6%B8%B8%E7%9C%9F">這他</a>
-        <br><iframe width="560" height="315" src="https://www.youtube.com/embed/i9DE8-rAPFY?si=XnvagDCdBZr5mdG5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <h3>根本超帥</h3>
+
+        <br>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/i9DE8-rAPFY?si=XnvagDCdBZr5mdG5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        <h3>根本超帥</h3>
     </div>
+
+    <a href="#wrap" id="top">TOP</a>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const btn = document.getElementById('miniGameBtn');
+  const menu = document.getElementById('gameDropdown');
+
+  function closeMenu(){
+    menu.classList.remove('show');
+    menu.setAttribute('aria-hidden','true');
+    btn.setAttribute('aria-expanded','false');
+  }
+  function openMenu(){
+    menu.classList.add('show');
+    menu.setAttribute('aria-hidden','false');
+    btn.setAttribute('aria-expanded','true');
+  }
+
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    if(menu.classList.contains('show')) closeMenu(); else openMenu();
+  });
+
+  menu.addEventListener('click', function(){ closeMenu(); });
+  document.addEventListener('click', function(){ closeMenu(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeMenu(); });
+});
+</script>
 </body>
-<a href="#wrap" id="top">TOP</a>
 </html>

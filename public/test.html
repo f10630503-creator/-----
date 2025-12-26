@@ -75,9 +75,88 @@
     .restartBtn:hover {
       background-color: #d32f2f;
     }
+    
+    nav a {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #007acc; /* 改為深藍 */
+    color: #ffffff !important; /* 白字 */
+    text-decoration: none;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav a:hover {
+    background-color: #005a9e !important; /* 懸停顏色 */
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255,255,255,0.15);
+}
+
+nav a:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) inset;
+}
+
+    .game-dropdown-wrapper{ position: relative; display: inline-block; }
+    .game-btn{
+        display: inline-block;
+        padding: 10px 18px;
+        background-color: #007acc;
+        color: #ffffff !important;
+        text-decoration: none;
+        border-radius: 5px;
+        border: 2px solid transparent;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: all 0.18s ease;
+    }
+    .game-btn:active{ transform: translateY(1px); box-shadow: 0 1px 2px rgba(0,0,0,0.08) inset; }
+
+    .game-dropdown{
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        min-width: 170px;
+        background: rgba(255,255,255,0.95);
+        border-radius: 6px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        padding: 6px;
+        display: none;
+        z-index: 50;
+    }
+    .game-dropdown.show{ display: block; }
+
+    .game-dropdown a{
+        display: block;
+        padding: 8px 12px;
+        color: #007acc;
+        text-decoration: none;
+        border-radius: 4px;
+        margin: 4px 0;
+        font-weight: 600;
+    }
+    .game-dropdown a:hover{ background: rgba(0,122,204,0.08); color: #004d7a; }
   </style>
 </head>
 <body>
+    <nav>
+      <a href="index.html" class="nav-btn">首頁</a>
+      <a href="guestbook.html" class="nav-btn">留言板</a>
+      <div class="game-dropdown-wrapper">
+          <button id="miniGameBtn" class="game-btn" aria-expanded="false" aria-controls="gameDropdown">小遊戲 ▾</button>
+          <div id="gameDropdown" class="game-dropdown" role="menu" aria-hidden="true">
+              <a href="snake.html" role="menuitem">貪吃蛇</a>
+              <a href="test.html" role="menuitem">猜數字</a>
+          </div>
+      </div>
+  </nav>
     <button id="btn1" >點我1</button>
     <button id="btn2" >點我2</button>
     <button id="btn3" >點我3</button>
@@ -96,5 +175,32 @@
     <p class="guesses">猜過的數字:</p>
     <button class="restartBtn">重新開始</button>
   </div>
+  <script>
+  document.addEventListener('DOMContentLoaded', function(){
+    const btn = document.getElementById('miniGameBtn');
+    const menu = document.getElementById('gameDropdown');
+    if(!btn || !menu) return;
+
+    function closeMenu(){
+      menu.classList.remove('show');
+      menu.setAttribute('aria-hidden','true');
+      btn.setAttribute('aria-expanded','false');
+    }
+    function openMenu(){
+      menu.classList.add('show');
+      menu.setAttribute('aria-hidden','false');
+      btn.setAttribute('aria-expanded','true');
+    }
+
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      if(menu.classList.contains('show')) closeMenu(); else openMenu();
+    });
+
+    menu.addEventListener('click', function(){ closeMenu(); });
+    document.addEventListener('click', function(){ closeMenu(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeMenu(); });
+  });
+  </script>
 </body>
 </html> 
